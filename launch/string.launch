@@ -1,0 +1,22 @@
+<launch>
+
+  <node name="pub_0"
+        pkg="jsk_20160505_test_message_filters" type="publish_string">
+    <rosparam>
+      rate: 10
+    </rosparam>
+  </node>
+  <node name="pub_1"
+        pkg="jsk_20160505_test_message_filters" type="publish_string">
+    <rosparam>
+      rate: 30
+    </rosparam>
+  </node>
+  <node name="pub_2"
+        pkg="jsk_20160505_test_message_filters" type="publish_string">
+    <rosparam>
+      rate: 30
+    </rosparam>
+  </node>
+
+</launch>
