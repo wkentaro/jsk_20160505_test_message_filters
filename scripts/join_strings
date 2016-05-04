@@ -27,13 +27,11 @@ class JoinStrings(ConnectionBasedTransport):
             sub.unregister()
 
     def _callback(self, msg0, msg1, msg2):
-        rospy.loginfo('started')
         msg = StringStamped()
         msg.header = msg0.header
         msg.data = '-'.join([msg0.data, msg1.data, msg2.data])
         self.pub.publish(msg)
         rospy.sleep(1.0)
-        rospy.loginfo('ended')
 
 
 if __name__ == '__main__':
