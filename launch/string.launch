@@ -24,6 +24,9 @@
     <remap from="~input0" to="pub_0" />
     <remap from="~input1" to="pub_1" />
     <remap from="~input2" to="pub_2" />
+    <rosparam>
+      always_subscribe: true
+    </rosparam>
   </node>
 
 </launch>
