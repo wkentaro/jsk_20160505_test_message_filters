@@ -19,4 +19,11 @@
     </rosparam>
   </node>
 
+  <node name="join_strings"
+        pkg="jsk_20160505_test_message_filters" type="join_strings">
+    <remap from="~input0" to="pub_0" />
+    <remap from="~input1" to="pub_1" />
+    <remap from="~input2" to="pub_2" />
+  </node>
+
 </launch>

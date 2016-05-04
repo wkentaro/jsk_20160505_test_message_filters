@@ -1,0 +1,42 @@
+#!/usr/bin/env python
+
+from jsk_topic_tools import ConnectionBasedTransport
+import message_filters
+import rospy
+
+from jsk_20160505_test_message_filters.msg import StringStamped
+
+
+class JoinStrings(ConnectionBasedTransport):
+    def __init__(self):
+        super(self.__class__, self).__init__()
+        self.pub = self.advertise('~output', StringStamped, queue_size=100)
+
+    def subscribe(self):
+        self.sub_0 = message_filters.Subscriber('~input0', StringStamped)
+        self.sub_1 = message_filters.Subscriber('~input1', StringStamped)
+        self.sub_2 = message_filters.Subscriber('~input2', StringStamped)
+        self.subs = [self.sub_0, self.sub_1, self.sub_2]
+        self.sync = message_filters.ApproximateTimeSynchronizer(
+            self.subs, queue_size=100, slop=0.1,
+        )
+        self.sync.registerCallback(self._callback)
+
+    def unsubscribe(self):
+        for sub in self.subs:
+            sub.unregister()
+
+    def _callback(self, msg0, msg1, msg2):
+        rospy.loginfo('started')
+        msg = StringStamped()
+        msg.header = msg0.header
+        msg.data = '-'.join([msg0.data, msg1.data, msg2.data])
+        self.pub.publish(msg)
+        rospy.sleep(1.0)
+        rospy.loginfo('ended')
+
+
+if __name__ == '__main__':
+    rospy.init_node('join_strings')
+    app = JoinStrings()
+    rospy.spin()
