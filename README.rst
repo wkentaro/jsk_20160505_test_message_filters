@@ -2,6 +2,19 @@ jsk_20160505_test_message_filters
 =================================
 
 
+Report
+------
+
+- https://github.com/ros/ros_comm/issues/800
+
+
+PRs
+---
+
+- https://github.com/ros/ros_comm/pull/801
+- https://github.com/ros/ros_comm/pull/802
+
+
 Issue
 -----
 
