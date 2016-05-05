@@ -17,8 +17,9 @@ class JoinStrings(ConnectionBasedTransport):
         self.sub_1 = message_filters.Subscriber('~input1', StringStamped)
         self.sub_2 = message_filters.Subscriber('~input2', StringStamped)
         self.subs = [self.sub_0, self.sub_1, self.sub_2]
+        queue_size = rospy.get_param('~queue_size', 100)
         self.sync = message_filters.ApproximateTimeSynchronizer(
-            self.subs, queue_size=100, slop=0.1,
+            self.subs, queue_size=queue_size, slop=0.1,
         )
         self.sync.registerCallback(self._callback)
 

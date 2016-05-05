@@ -26,6 +26,7 @@
     <remap from="~input2" to="pub_2" />
     <rosparam>
       always_subscribe: true
+      queue_size: 100
     </rosparam>
   </node>
 
