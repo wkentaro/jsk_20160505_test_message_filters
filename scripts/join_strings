@@ -31,8 +31,8 @@ class JoinStrings(ConnectionBasedTransport):
         msg = StringStamped()
         msg.header = msg0.header
         msg.data = '-'.join([msg0.data, msg1.data, msg2.data])
-        self.pub.publish(msg)
         rospy.sleep(1.0)
+        self.pub.publish(msg)
 
 
 if __name__ == '__main__':
